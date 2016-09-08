@@ -91,6 +91,8 @@ filetype off                  " required
 set colorcolumn=100
 highlight ColorColumn ctermbg=darkgrey
 
+colorscheme happy_hacking
+
 
 "--------------------[Vundle configurations]----------------------------
 
@@ -116,7 +118,7 @@ Plugin 'https://github.com/scrooloose/syntastic.git'
 Plugin 'https://github.com/kien/ctrlp.vim.git'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-"Plugin 'valloric/youcompleteme'
+Plugin 'valloric/youcompleteme'
 Plugin 'tpope/vim-fugitive.git'
 Plugin 'easymotion/vim-easymotion.git'
 Plugin 'majutsushi/tagbar.git'
@@ -141,14 +143,16 @@ filetype plugin indent on    " required
 
 "--------------------[Autocomplete]------------------------------
 
-let g:loaded_youcompleteme = 0
 
-let g:clang_snippets = 1
-let g:clang_conceal_snippets=1
-let g:clang_snippets_engine = 'clang_complete'
-set completeopt=menu,menuone
+"let g:loaded_youcompleteme = 1 
+
+"let g:clang_snippets = 1
+"let g:clang_conceal_snippets=1
+"let g:clang_snippets_engine = 'clang_complete'
+"set completeopt=menu,menuone
 
 "Limit popup menu height
+let g:ycm_autoclose_preview_window_after_insertion = 1
 set pumheight=20
 
 set t_Co=256
@@ -162,6 +166,24 @@ set concealcursor=vin
 
 let g:clang_library_path = '/usr/lib/llvm-3.8/lib/'
 
+let g:SuperTabDefaultCompletionType='<c-x><c-u><c-p>'
+
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:ycm_key_list_select_completion   = ['<C-j>', '<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-k>', '<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType    = '<C-n>'
+let g:SuperTabCrMapping = 0
+let g:UltiSnipsSnippetsDir='~/.vim/snippets'
+let g:UltiSnipsEditSplit='vertical'
+let g:UltiSnipsExpandTrigger           = '<tab>'
+let g:UltiSnipsJumpForwardTrigger      = '<tab>'
+let g:UltiSnipsJumpBackwardTrigger     = '<s-tab>'
+
+nnoremap <leader>ue :UltiSnipsEdit<cr>
 
 "--------------------[/Autocomplete]-----------------------------------
 
@@ -172,5 +194,3 @@ let g:airline#extensions#branch#enabled=1
 "TagBar map
 map <F8> :TagbarToggle<CR>
 map <F7> :NERDTree<CR>
-
-imap <silent> <c-e> <c-o><c-i><esc>lli
